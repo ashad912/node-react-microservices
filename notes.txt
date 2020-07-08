@@ -1,0 +1,49 @@
+// A single microservice contains stuff (Routing, Middlewares, Buisness Logic, Database access) to implement one feature of our app
+// Microservices big problem is data management between services
+// Storing data in the strange way (each service gets it own db)
+// Never going access data from Feature A to DB B
+// Db for service = Database-Per-Service
+// How to code complex data management, with data from diffrent services?
+
+// Sync & Async in Microservices
+
+// Sync - communication using requests (between services)
+// Async - communication using events
+
+// Service D makes requests to Service B
+// Service B fetch the DB
+
+// Sync:
+// - Easy to understand
+// - Service D won't need a db
+// - Introduces a dependency between services
+// - If any inter-service request fails, the overall request fails
+// - The entire request is only as fast as the slowest request
+// - Can easily introduce webs of request
+
+// Async:
+// - First option: Introduces EventBus (same qualities as in Sync com + more drawbacks)
+// - Second option: Creating events after service db saving.
+// Service D, can hold populated data, ready to resposne (?!)
+// ->
+// - Service D has zero dependencies on other services
+// - Service D will be extremely fast!
+// - Data duplication. Paying for extra storage + extra DB (seems to be insufficient)
+// - Harder to understand
+
+
+// Idea of Query Service! Holds all populated queries, fast, no dependencies. Harder to understand, data duplication.
+
+// Going to build own event bus using Express. Very simple. There are many professional implementations - RabbitMQ, Kafka, Nats...
+
+// Moderation Service can be next field in event chain OR be in paralell with Query and Moderation Service
+
+// There is third approach:
+// Comments Service sends CommentCreated event to EventBus
+// Query Service receives the event callback, and updates content to show
+// Moderation Service receives the event callback, and sends CommentModerated to EventBus
+// CommentsService receives callback, and sends CommentsUpdated to EventBus
+// Query Service receives the event callback, and updates content to show
+
+// Too simulate pending comment, only need to shut down Moderation Service!
+// Need to deal with missing events - best solution... storing events in addtional db connected with event bus xD
