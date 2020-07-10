@@ -1,0 +1,72 @@
+// Tagging an Image
+
+// Changing docker build command
+// docker build -t <your docker id>/<project name>:<version>
+// docker run <your docker id>/<project name>:<version>
+
+// If not specify version at the end, will be executed latest one
+
+// Image -> Container -> Image
+// We can manually do what Dockerfile does!...
+
+// First terminal
+// docker run -it alpine sh
+// apk add --update redis
+
+// Second terminal
+// docker ps -> getting container <id>
+// docker commit -c 'CMD ["redis-server"]' <id> // -c option sets container run-command
+// -> getting new id
+// docker run <new id>
+
+//... but is not recommended!
+
+// Alpine Image has 'not much' programs installed
+// To get specific version need add: node:6.14
+
+// Image <repo>:alpine - absolutly most strict/compressed image
+
+// Why package.json is not found?
+// Container has access only to separated snapshot!
+// Project files are not acessible in container by default!
+// We need to use COPY command.
+
+// COPY <source> <destination>
+// <source> in machine relative to build context
+// <destination> inside the container
+
+// docker build -t ashad912/simpleweb .
+// docker run ashad912/simpleweb
+
+// Need to set container port mapping!
+// Container by default has no limitation with reaching out the container!
+// Incoming traffic is strictly blocked by default!
+
+// docker run -p 8080 : 8080 <image id>
+// -p parameter
+// Redirect localhost:8080 to container 8080
+// These two port do not have to be identical
+// 5000:8080 -> <ip>:5000 -> container:8080
+
+// Docker Toolbox
+// http://192.168.99.100:8080/
+
+// Copy to root container folder?? Bad practice!
+// Need to specify better path
+
+// WORKDIR command
+// WORKDIR /usr/app
+// Changing workspace to root/usr/app
+
+// Can run app, by run command and user
+// docker exec -it <id> sh
+// to look inside project files
+
+// To automatically reflect changes in code? Not now
+// Need to rebuild container
+
+// Files copy is step before installing npm deps.
+// Change in files, forces docker to not use cache form npm deps (it is next step).
+// It is not ideal, we want to change it!
+
+// Can order change of copying (package.json first)

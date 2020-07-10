@@ -16,3 +16,31 @@
 
 // docker stop <id> -> SIGTERM message (has 10s to perform, after that sends SIGKILL)
 // docker kill <id> -> SIGKILL message
+
+// docker run redis worked from t-mobile networ, not from nju!
+// Problem with dns?
+
+// redis-server is woring only in container
+// To run redis-cli u need to do it in container!
+
+// docker exec -it <container id> <command>
+
+// -it - allow us to provide input to the container
+// Without -it we are kicked out to the terminal
+
+// Linux communication channels for process:
+// STDIN - input to process
+// STDOUT - output from process
+// STDERR - error output
+// -it = -i -t
+// -i - connect terminal to STDIN
+// -t - better formatting
+
+// docker exec -it 7ad96e1904d6 sh
+// sh - provides possibility to execute linux commands
+// sh = Shell - command processor executed inside container
+
+// docker run -it busybox sh <- Run new container with busybox image, and run Shell
+// Can only run one process in that Shell
+
+// Containers do not share filesystem be default

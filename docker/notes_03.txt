@@ -1,0 +1,43 @@
+// Creating own image
+// Dockerfile -> Docker Client -> Docker Server -> Usable Image!
+// Dockerfile - configuration to define how our container should behave
+
+// Creating a Dockerfile
+// - Specify a base image
+// - Run some commands to install additional programs
+// - Specify a command to run on container setup
+
+// Create an image that runs redis-Server
+
+// Generate image from associated files
+// docker build . <- inside folder attached Dockerfile with
+
+// FROM, RUN, CMD keywords tell Docker what to do
+
+// FROM alpine <- alpine is a base image
+// RUN apk add --update redis
+// CMD ["redis-server"]
+
+// Base image is like Operating System
+// Next, we need to run commands to install additional programs
+// Final command to run on start up
+
+// alpine is like Win, Ubuntu, Mac
+// As usual, Docker check if apline is saved in local cache
+
+// apk is a package manager
+// Adding and updating redis to our image
+
+// Docker creates intermediate container during RUN and CMD
+// During RUN command, Docker looks at base image, takes its snapshot, and create container
+// RUN command is executed inside the container
+// After that, Docker takes updated snapshot and saves to temporary image, deleting container
+
+// Finally Docker, looks at our new temporary image, copies its snapshot to new intermediate container,
+// marks CMD command on this container as default command, saves updated snapshot&command to new image,
+// and removes intermediate container
+
+// Every next step in Dockerfile extends image from previous step
+
+// If nothing changed between steps in Dockerfile, Docker uses cache to get appropriate temporary image
+
