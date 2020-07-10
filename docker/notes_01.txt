@@ -1,0 +1,57 @@
+// Cloning most loaded services. New ports or even virtual machine!
+
+// Keeping programs in Docker containers (with all associated environment)
+
+// Kubernetes is a tool for running a bunch of different containers
+// We give it some configuration to describe how we want out containers to run and interact with eachother
+
+// Very easy and straightforward communication between services
+
+// Docker images and containers 
+// Image - single file with all deps and config required to run a programs
+// Container - instance of an image. Runs a program.
+
+
+// Docker Client (CLI) - goint o issue commands to
+// Docker Server (Daemon) - responsible for creating images, runnig containers etc.
+
+// docker run hello-world, creates docker image with 'hello-world' program inside
+
+// First docker checked Image Cache and tried to find hello-world image locally
+// Docker did not find this image, so it has downloaded it from Docker Hub
+
+// What the container is?
+// Kernel is a layer between processes and hardrive
+// Processes use System Calls
+
+// What if we want to use mutually exclusive pieces of software?
+// We need to use namespacing on Hard Disk.
+// In this case, Kernel has to come up with, where redirect System Call
+// Namespacing - isolating resources per process (or group of processes)
+// Control Groups (cgroups) - limit amount of resources used per process
+
+// Resource(s) and process(es) grouped in isolated area are container 
+// Resources are assinged to specific process(es)
+
+// Process -> Kernel (Sytem Call) -> Resources (Hard Drive, Network, RAM, CPU)
+
+// Relation between Image and Container
+// Image - file system snapshot (like Chrome or Python), with starup command(s)
+
+// Image is taken to the resources of Container (installed to its part of Hard Drive)
+// Then we can run Chrome process in Container
+
+// Docker is running on Linux virtual machine
+
+// docker run <image name> command!
+
+// Can overwrite default command behavour
+
+// ls and echo works with busybox because they (as a programs) exist in busybox filesystem image
+// 'ls executable' / 'echo executable'
+
+// hello-world is just one single program
+
+// docker ps - list all running containers
+// https://blog.baudson.de/blog/stop-and-remove-all-docker-containers-and-images
+// docker stop $(docker ps -aq) - stop all containers

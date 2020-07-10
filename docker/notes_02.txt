@@ -1,0 +1,18 @@
+// Container lifecycle
+
+// docker run = docker create + docker start
+// -a - give my any output from terminal!
+// docker start is not going to show u info from terminal by default
+
+// Docker rerun:
+// docker start <id>
+
+// Cannot overwrite command in created container
+
+// docker system prune - remove a lot of things (containers, cache)
+
+// Forgot -a option when docker start
+// User docker logs <id> to see the outputed logs
+
+// docker stop <id> -> SIGTERM message (has 10s to perform, after that sends SIGKILL)
+// docker kill <id> -> SIGKILL message
