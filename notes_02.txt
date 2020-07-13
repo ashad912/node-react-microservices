@@ -1,0 +1,50 @@
+// .dokcerignore to not include node_modules folder in the image
+
+// Docker commands recap:
+
+// docker build -t <owner>/<repo name>
+// docker run <image id or image tag>
+// docker run -it <image id or image tag> <cmd>
+// docker ps
+// docker exec -it <container id> <cmd>
+// docker logs <container id> <- show or output logs
+
+// Kubernetes for Docker-Toolbox:
+// Install kubectl
+// https://kubernetes.io/docs/tasks/tools/install-kubectl/#install-kubectl-on-windows
+// Install minikube
+// https://kubernetes.io/docs/tasks/tools/install-minikube/
+// Run: minikube start
+
+// Whirlwind of Kubernetes
+
+// Creating image.
+// Creating config file to kubectl - allow multinodes, make copies accessible from network.
+// pod - strąk, container - kontener, node - gałąź
+// Deployment for Posts - recreate Posts pod if it crashes
+// Kubernetes service - network management (care all difficult things - ip, ports etc.)
+// Other services connect to Posts through Kubernetes service
+
+// Kubernetes cluster - collection of nodes 
+// Node - virtual machine that will run our containers
+// Pod - more or less a running container. Technically, a pod can run multiple containers (we will not do this)
+// Deployment - monitors a set of pods, make sure they are running and restarts them if they crash
+// Service - provide an easy-to-remember URL to access a running container
+
+// Kubernetes Config Files
+// Tells Kubernetes about the different Deployments, Pods and Services (referred to as 'Objects')
+// that we want to create
+// Written in YAML syntax
+// Always store these files with out project source code - documentation
+// We can create Objects without config files - DO NOT DO THIS!
+// Config files provide a precise definition of what your cluster is running
+
+// Kubernetes docs will tell you to run direct commands to create objects
+// - only do this fof testing purposes
+
+// Blog posts will tell you to run direct commands to create objects - close the blog post!
+
+// Apply posts.yaml
+// kubectl apply -f posts.yaml
+// kubectl get pods
+// https://stackoverflow.com/a/52016801

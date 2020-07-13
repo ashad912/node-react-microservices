@@ -1,7 +1,7 @@
 // Tagging an Image
 
 // Changing docker build command
-// docker build -t <your docker id>/<project name>:<version>
+// docker build -t <your docker id>/<project name>:<version> .
 // docker run <your docker id>/<project name>:<version>
 
 // If not specify version at the end, will be executed latest one
@@ -56,7 +56,7 @@
 
 // WORKDIR command
 // WORKDIR /usr/app
-// Changing workspace to root/usr/app
+// Changing workspace to <root>/usr/app
 
 // Can run app, by run command and user
 // docker exec -it <id> sh
@@ -70,3 +70,6 @@
 // It is not ideal, we want to change it!
 
 // Can order change of copying (package.json first)
+
+// Second copy is match with its cache (dockerizing is faster)
+// Second copy - copy over remaining content

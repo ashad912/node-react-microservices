@@ -10,7 +10,7 @@ COPY ./package.json ./
 # Install some deps
 RUN npm install
 
-# Copy project from 'machine' to container
+# Copy project from the 'machine' to container
 COPY ./ ./
 
 # Default command
