@@ -30,4 +30,7 @@
 // When services are set up, just need to wire it all up!
 
 // Our microservices, thanks to Cluster IP Services, can communicate one another using: <service-name>:<port>
-// Need to change 'localhost' to <service-name> phrese in code
+// Need to change 'localhost' to <service-name> in code
+
+// Apply many yaml files
+// kubectl apply -f . <- find all config files inside location
