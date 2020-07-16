@@ -1,0 +1,70 @@
+// posts.yaml explanation
+
+// apiVersion: v1 - K8s is extensible - we cand add in our own custom objects. This specifies the set of objects we want K8s to look at
+// kind: Pod - The type of object we want to create
+// metadata: - Config options for the object we are about to create
+// name: posts - When pod is created, give it a name of 'posts'
+// spec: - The exact attributes we want to apply to othe object we are about to create
+// containers: - We can create many containers in a single pod
+// - name: posts - Make a container with a name of 'posts'
+// image: ashad912/posts:0.0.1 - The exact image we want to use
+
+// Reminder: "-" in yaml means element of array (one dash = one entry)
+// No adding surfix :0.0.1, causes that Docker tries to fetch image from dockerhub
+
+// K8s commands:
+// docker ps -> kubectl get pods
+// docker exec -it [container id] [cmd] -> kubectl exec -it [pod_name][cmd]
+// docker logs [container id] -> kubectl logs [pod_name]
+// kubectl delete pod [pod_name]
+// kubectl apply -f [config file name]
+// kubectl describe pod [pod_name]
+
+// Backups:
+// DOCKER_CERT_PATH: C:\Users\krzys\.docker\machine\machines\default
+
+// Conflict between Docker Toolbox and Docker Deamon (Minikube)
+// Resolved: Removed Docker Toolbox, reinstalled docker-cli with Chocolatey
+// Now docker runs, as deamon on Minikube
+
+// Remeber to point (run) docker-deamon, after terminal opening:
+// minikube -p minikube docker-env | Invoke-Expression
+
+// Adding k shortcut as kubectl
+// Setting alias in Powershell:
+// Set-Alias -Name <alias> -Value <command>
+// Checking alias:
+// Get-Alias -Name <alias>
+
+
+// Deployment cares about pods restarts
+// Deployment detects pod updates automatically
+
+// Deployments needs to know what pods its need to manage
+// We can specify it with selector key
+// We specified template labels as 'app: posts', so we need to mark it in selector
+
+// K8s deployments:
+// k get deployments
+// k describe deployment [depl name]
+// k apply -f <config-filename.
+// k delete deployment [depl name] <- deleting also associated pods
+
+// Can delete deployment pod, but it will recrete (with other id)
+
+// Updating deployments
+
+// #1
+// Change manually .yaml
+// Still need to run apply command
+// Then k8s knows about update
+// It compares config file, and makes changes in deployment
+
+// #2
+// Use 'latest' surfix
+// Use docker.io (docker hub)
+// K8s automatically update pod with new container
+// But Stephen recommands 'k rollout restart deployment [depl_name]
+
+
+

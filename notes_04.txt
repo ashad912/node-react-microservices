@@ -1,0 +1,33 @@
+// How to makes requests from k8s?
+
+// Service!
+
+// Types of Services
+
+// Cluster IP - set URL to access a pod
+// Node Port - makes a pod accessible from outside the Cluster (dev purposes)
+// Load balancer - make a pod accessible from outside the Cluster (right prod expose way )
+// External name - redirects an in-cluster request to a CNAME url... (not imporant for basics)
+
+// Configuring Node Port!
+// Selector selects what pod has to be exposed!
+
+// Port vs targetPort
+
+// targetPort - specific for node application
+// port - node service port
+
+// k get services
+// PORTS props shows under which port service is available 
+// Can access to posts service by: <minikube-ip>:<node-service-port>
+
+// How communicate two pods?
+// Using Cluster IP Service
+// Technically two pods has own ips, but Cluster IP provides easy-to-undestrand way to communicate
+
+// Need to give different services names to not overwrite!
+
+// When services are set up, just need to wire it all up!
+
+// Our microservices, thanks to Cluster IP Services, can communicate one another using: <service-name>:<port>
+// Need to change 'localhost' to <service-name> phrese in code

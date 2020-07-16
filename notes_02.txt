@@ -7,14 +7,37 @@
 // docker run -it <image id or image tag> <cmd>
 // docker ps
 // docker exec -it <container id> <cmd>
-// docker logs <container id> <- show or output logs
+// docker logs <container id> <- show all output logs
 
+// #1:
 // Kubernetes for Docker-Toolbox:
 // Install kubectl
 // https://kubernetes.io/docs/tasks/tools/install-kubectl/#install-kubectl-on-windows
 // Install minikube
 // https://kubernetes.io/docs/tasks/tools/install-minikube/
 // Run: minikube start
+
+// #2
+// https://learnk8s.io/blog/installing-docker-and-kubernetes-on-windows
+
+// Instal Chocolatey (useful command installer):
+
+// Set-ExecutionPolicy Bypass -Scope Process -Force
+// iex ((New-Object System.Net.WebClient).
+// DownloadString('https://chocolatey.org/install.ps1'))
+
+// Install minikube:
+// choco install minikube -y
+
+// Start minikube:
+// minikube start
+
+// Install docker-cli:
+// choco install docker-cli -y
+
+// Run docker: 
+// minikube -p minikube docker-env | Invoke-Expression
+
 
 // Whirlwind of Kubernetes
 
@@ -47,4 +70,4 @@
 // Apply posts.yaml
 // kubectl apply -f posts.yaml
 // kubectl get pods
-// https://stackoverflow.com/a/52016801
+// https://stackoverflow.com/a/52016801 -> on Win: minikube -p minikube docker-env | Invoke-Expression
