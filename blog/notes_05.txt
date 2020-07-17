@@ -1,0 +1,96 @@
+// Creating React App Dev Server pod
+
+// React App Dev Server is not working in production environment
+
+// All requests come from browser!
+
+// How to connect browser with our K8s Node?
+
+// #1 Bad option
+// Create Node Port for all microservices pods.
+// Node Port creates random port...
+
+// #2
+// Creating Load Balancer Service (with Clusters IP for each pod).
+
+// Load Balancer Service tells K8s to reach out to its provider and provision a load balancer.
+// Gets trafiic in to a single pod
+
+// Ingress or Ingress Controller
+// A pod with a set of routing rules to distribute traffic to other services
+
+// Outside World <-> Cloud Provider (AWS, GC, Azure)
+// Inside Cloud Provider it is our Cluster
+// Inside Cluster it is some pod
+
+// Config file for a LoadBalancer Service
+
+// Load Balancer exists outside Cloud Provider
+// It joins Outside Worlds with Pods in our Cluster
+
+// Ingress Controller is inside our Cluster (it is a pod) and it is responsible for managing route rules
+
+// ingress-nginx, project will create a Load Balancer Service + an Ingress 
+// We are not going to use kubernetes-ingress!
+
+// To install ingress-nginx, we need to run mandatory command
+// https://kubernetes.github.io/ingress-nginx/deploy/
+// minikube addons enable ingress
+
+// Creating ingress-srv.yaml
+// Why used posts.com as host?
+
+// In single K8s cluster we can host many diffrent apps
+// In development environment, we have to cheat our machine
+// Our machine needs to connect to our host specified in yaml file
+// We want to redirect host domain adress to localhost or minikube_ip
+// Otherwise our OS will try to connect with host somehere in the Web
+
+// Create client-depl.yaml with port 3000
+
+// Ingress-nginx does not recognize the request method!
+// If project contains the-same-named routes, we need to change them to be unique!
+// In this project, there were POST /posts in Posts microservice, and GET /posts in Query microservice
+// Changed POST /posts to POST /posts/create
+
+// For route '/posts/:id/comments' we need to use '/posts/?(.*)/comments' in ingress-srv.yaml
+// ?(.*) is regular expression supported by nginx
+// Need to enable Regex in ingress-srv.yaml
+
+// Route '/' requires Regex using -> '/?(.*)' to be supported by React Router
+// 'React route' has to be at the bottom file, as the least important
+// It is resolved only when other routes in file does not match to sent request
+
+// Remember to remove port from React axios routes 'localhost:4000' -> 'blog.com'
+// No we would like to make all process of deployment automatic
+
+// Introducing Skaffold!
+// Automates many tasks in a K8s dev environment
+// Makes it really easy to update code in a running pod
+// Makes it really easy to create/delete all objects tied to a project at once
+
+// Skaffold track k8s yaml files (have to specify location in scaffold.yaml)
+// It tracks changes/creations/deletions/applyings
+// It restars deployments
+// Skaffold makes life easier if user works at few projects in the same time
+// It is very easy to switch between them
+
+// artifacts:
+//    - image: ashad912/client
+//      context: client
+//      docker:
+//        dockerfile: Dockerfile
+//      sync:
+//        manual:
+//          - src: 'src/**/*js'
+//            dest: .
+
+// skaffold dev
+// Skaffold provide changing the code without rebuild, redeploy and restart!
+// Look at the changes in client code, if changes appeared out of the code, rebuild docker image
+// Skaffold does not take care of rerunning processes inside the containers! 
+// Is recommended to use nodemon
+
+// Exiting (Ctrl+C) skaffold will clean up all runnings services/deployments.
+// If for some reason the Skaffold process was unable to catch the SIGINT signal,
+// skaffold delete can always be run later to clean up the deployed Kubernetes resources.

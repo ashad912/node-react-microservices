@@ -1,5 +1,8 @@
 FROM node:alpine
 
+# Additional CRA line
+ENV CI=true
+
 WORKDIR /app
 
 COPY package.json ./

@@ -10,7 +10,7 @@ export default () => {
     // Switching to populated (with comments) posts from Query Service...
 
     //const res = await axios.get('http://localhost:4000/posts');
-    const res = await axios.get('http://localhost:4002/posts');
+    const res = await axios.get('http://blog.com/posts');
     console.log(res.data)
 
     setPosts(res.data);
