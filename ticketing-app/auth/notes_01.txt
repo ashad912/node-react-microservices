@@ -1,0 +1,78 @@
+// Ticketing App
+
+// User can list a ticket for an event (concert, sports) for sale
+// Other users can purchase this ticket
+// Any user can list tickets for sale and purchase tickets
+// When a user attempts to purchase a ticket, the ticket is 'locked' for 15 minutes. The user has 15 minutes to enter their payment info.
+// While locked, no other user can purchase the ticket. After 15 minutes the tickes should 'unlock'.
+// Ticket prices can be edited if they are not locked.
+
+// Ticketing App resources
+
+// User, Ticket, Order, Charge
+
+// Ticketing App services
+
+// auth - Related to auth
+// tickets - Ticket creation/editing. Knows wheter a ticker can be updated
+// orders - Order creation/editing
+// expiration - Watches for orders to be created, cancels them after 15 minutes
+// payments - Handles credit card payments. Cancels orders if payments fails, completes if payment succeeds.
+
+// Each resource has separated service. It depends on buisiness logic.
+
+// Ticketing App events
+
+// UserCreated, UserUpdated
+// OrderCreated, OrderCancelled, OderExpired
+// TicketCreated, TicketUpdated
+// ChargeCreated
+
+// Using Next.JS with React. Microservices is going to be connected to MongoDB,
+// expect 'expiration' service is going to be connected to Redis.
+
+// NATS Streaming Server is going to manage microservices dataflow.
+
+// Possibility to set up Google Cloud VM
+// Skaffold has good integration with GCloud
+
+// Unsync change through GCloud: My Computer -> Google Cloud Build -> Google Cloud VM
+// Syn change: My Computer -> Google Cloud VM
+
+// cloud.google.com/free
+// Creating project -> K8s engine -> Clusters -> Creating Cluster
+// Setting up kubectl contexts for GCloud
+
+// Installing GCloud SDK: cloud.google.com/sdk/docs/quickstarts
+
+// 'gcloud' command
+
+// gcloud auth login
+// gcloud init -> choose project, region, zone
+
+// Can stop use Docker Desktop (for MacOS/Win10Pro)
+// Close Docker Desktop
+// gcloud components install kubectl
+// gcloud container clusters get-credentials <cluster name>
+
+// Steps:
+
+// Enable Google Cloud Build
+// Update skaffold to use Google Cloud Build 
+// -> googleCloudBuild: projectId: <id>
+// -> image: us.gcr.io/<id>/auth
+// removing push: local option
+// changing image id in deployment
+
+// Setup ingress-nginx on our google cloud cluster kubernetes.github.io/ingress-nginx
+// -> Install ingress on GCloud context
+// -> Run additional command
+
+// Update our hosts file again to point to the remote cluster
+// -> Take gcloud load balancer ip
+// -> Paste it to our 'hosts' file 
+// Restart Skaffold
+
+// Viewing logs on GCloud Build 
+// Docker images are pushed to GCloud repo now!
+

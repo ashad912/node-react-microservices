@@ -1,0 +1,47 @@
+// App #1 (blog) -> Developing to ticketing-app
+
+// Lots of duplicated code! -> Build a central library as an NPM module to share code between our different projects.
+// Really hard to picture the flow of events between services -> Precisely define all of our events in this shared library
+// Really hard to remember what props an event should have -> Write everything in TS
+// Really hard to test some event flows -> Write tests for as much as possible/reasonable
+// My machine is getting laggy running k8s and everything else... -> Run a k8s cluster in the cloud and develop on it almost as quickly as local
+// Concurrency issues (ex. post and comment creation at the same time) -> Introduce a lot of code to handle concurrency issues
+
+
+// ---
+
+// Ticketing App
+
+// User can list a ticket for an event (concert, sports) for sale
+// Other users can purchase this ticket
+// Any user can list tickets for sale and purchase tickets
+// When a user attempts to purchase a ticket, the ticket is 'locked' for 15 minutes. The user has 15 minutes to enter their payment info.
+// While locked, no other user can purchase the ticket. After 15 minutes the tickes should 'unlock'.
+// Ticket prices can be edited if they are not locked.
+
+// Ticketing App resources
+
+// User, Ticket, Order, Charge
+
+// Ticketing App services
+
+// auth - Related to auth
+// tickets - Ticket creation/editing. Knows wheter a ticker can be updated
+// orders - Order creation/editing
+// expiration - Watches for orders to be created, cancels them after 15 minutes
+// payments - Handles credit card payments. Cancels orders if payments fails, completes if payment succeeds.
+
+// Each resource has separated service. It depends on buisiness logic.
+
+// Ticketing App events
+
+// UserCreated, UserUpdated
+// OrderCreated, OrderCancelled, OderExpired
+// TicketCreated, TicketUpdated
+// ChargeCreated
+
+// Using Next.JS with React. Microservices is going to be connected to MongoDB,
+// expect 'expiration' service is going to be connected to Redis.
+
+// NATS Streaming Server is going to manage microservices dataflow.
+

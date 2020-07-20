@@ -1,0 +1,33 @@
+// Adding express-validator to not manually create validations
+
+// Have to be sure to create the same error response template for each backend service
+// In each case!
+
+// Write an error handling middleware
+// Capture all possible errors using Express's error handling mechanism (calling the 'next' function)
+
+// Express catches errors from synchronous code and process them
+// If code is asynchronous, next() function must be invoke, to pass error to Express handling
+
+// Express counts number of arguments defined in middleware callback functions.
+// If there are four arguments, Express assumes that is an error handler middleware!
+
+
+// TS Interface template - array of objects
+// Optional field
+{
+    errors: {
+        message: string,
+        field?: string
+    }[]
+}
+
+// Many custom error creates many if-checks in error-handler...
+// We can inverse this situation, if we serialize each custom error to CommonErrorStructure
+
+// Creating system of typo-proof error handling code (abstract class thanks to TS)
+
+// Async Error
+// Introducing next function to code
+// We can change default Express behaviour to give it possibility to handle async errors, without next function
+// We need to install express-async-errors package
