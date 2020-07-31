@@ -1,0 +1,30 @@
+// Single container for Redis
+// Separated Docker Containers with Node App and Redis
+
+// To join to containers we can use Docker CLI Network or Docker Compose
+// Docker Compose is solution used frequently in industrial environment
+
+// Docker Compose
+// Separate CLI that gets installed along with Docker
+// Used to start up multiple Docker containers at the same time
+// Automates some of the long-winded arguments we were passing to 'docker run'
+
+version: '3'
+services:
+  redis-server:
+    image: 'redis'
+  node-app:
+    build: .
+    ports:
+      - "4001:8081"
+
+// First port - out of container: 4001. Second, inside container: 8081
+// Ports props is used to make app visible on local machine 
+// When 'redis-server' connection is going out from Express app, Docker sees it, and point to docker image
+
+// Docker automatically looks at active directory for docker-compose.yaml file
+// docker-compose up = docker run myimage
+// docker-compose up --build = docker build . && docker run myimage
+
+// Launch in background: docker-compose up -d
+// Stop containers: docker-compose down
