@@ -17,7 +17,7 @@
 // docker stop <id> -> SIGTERM message (has 10s to perform, after that sends SIGKILL)
 // docker kill <id> -> SIGKILL message
 
-// docker run redis worked from t-mobile networ, not from nju!
+// docker run redis worked from t-mobile network, not from nju!
 // Problem with dns?
 
 // redis-server is woring only in container

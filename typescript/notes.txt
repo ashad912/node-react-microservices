@@ -1,0 +1,16 @@
+TS:
+
+- helps us catch errors during development
+- uses 'type annotations' to analyze our code
+- only active during development
+- does not provide any performance optimazation
+
+tsc - TypeScript compiler
+
+Running VSC by
+code .
+
+Combining tsc and node commands:
+ts-node
+
+

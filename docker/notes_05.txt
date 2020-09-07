@@ -28,3 +28,15 @@ services:
 
 // Launch in background: docker-compose up -d
 // Stop containers: docker-compose down
+
+// To use docker image (for docker-compose) on cloud u need:
+// docker push <your docker id>/<project name>:<version>
+
+// DOCKER TOOLBOX HELP
+
+// Run docker in Win Powershell as Admin
+// Restart docker-machine -> dokcer-machine restart
+// Run: docker env
+// Run: & "C:\Program Files\Docker Toolbox\docker-machine.exe" env | Invoke-Expression
+
+// 
