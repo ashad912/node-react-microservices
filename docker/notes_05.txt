@@ -39,4 +39,4 @@ services:
 // Run: docker env
 // Run: & "C:\Program Files\Docker Toolbox\docker-machine.exe" env | Invoke-Expression
 
-// 
+// npm ERR! code EAI_AGAIN -> Probably u need to restart docker machine.
