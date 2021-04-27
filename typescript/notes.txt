@@ -14,3 +14,19 @@ Combining tsc and node commands:
 ts-node
 
 
+Cannot execute ts code in plain node or browser environment
+
+<variable > as <Interface> <- requires to meet Interface conditions - if not, it is marked in the code editor
+
+Type annotations -> what type of var will refer to
+
+Type inference - > TypeScript guesses a types
+
+Type anno when?
+
+- function returns 'any' type and we nned to clarify the value
+- we need to declare a variable on one line then init it later
+- when we want a variable to have a type that cannot be inferred
+
+
+AVOID any at all costs!!!
