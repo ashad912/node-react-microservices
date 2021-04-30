@@ -1,0 +1,12 @@
+11
+73C:\Users\krzys\Documents\VS\node-react-microservices\typescript\maps\dist132642915464275111 1
+72C:\Users\krzys\Documents\VS\node-react-microservices\typescript\maps\src132642870128242852 1
+79C:\Users\krzys\Documents\VS\node-react-microservices\typescript\maps\index.html132642910018512853 0
+86C:\Users\krzys\Documents\VS\node-react-microservices\typescript\maps\node_modules\.bin132642904881082796 1
+81C:\Users\krzys\Documents\VS\node-react-microservices\typescript\maps\node_modules132642905001032100 1
+86C:\Users\krzys\Documents\VS\node-react-microservices\typescript\maps\package-lock.json132642905001580563 0
+81C:\Users\krzys\Documents\VS\node-react-microservices\typescript\maps\package.json132642905001211589 0
+81C:\Users\krzys\Documents\VS\node-react-microservices\typescript\maps\src\index.ts132642915461701998 0
+91C:\Users\krzys\Documents\VS\node-react-microservices\typescript\maps\dist\index.7cacc1f4.js132642915464125524 0
+95C:\Users\krzys\Documents\VS\node-react-microservices\typescript\maps\dist\index.7cacc1f4.js.map132642915464255242 0
+84C:\Users\krzys\Documents\VS\node-react-microservices\typescript\maps\dist\index.html132642915464115625 0
