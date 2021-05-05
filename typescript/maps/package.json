@@ -9,5 +9,8 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "devDependencies": {}
+  "dependencies": {
+    "@types/faker": "^5.5.3",
+    "faker": "^5.5.3"
+  }
 }
