@@ -11,11 +11,11 @@ let colors: string[] = ['red', 'green', 'blue']
 let myNumbers: number[] = [1, 2, 3]
 let truths: boolean[] = [true, false, false]
 
-class Car {
+class Sth {
 
 }
 
-let car: Car = new Car()
+let sth: Sth = new Sth()
 
 
 let point: { x: number; y: number } = {

@@ -29,4 +29,71 @@ Type anno when?
 - when we want a variable to have a type that cannot be inferred
 
 
-AVOID any at all costs!!!
+AVOID 'any' at all costs!!! 
+
+---
+
+Functions:
+
+Type anno for functions -> Code we add to tell TS what type of arguments a function will receive and what type of values it will return 
+Type inference for functions -> TS tries to figure out what type of value a function will return
+
+TS can iffers witch type would be returned by looking at whole return statement
+If u not anno witch type going to be returned, TS will just guess it
+
+Return 'void' anno allows null or undefined
+
+Return 'never' anno - excplicity never going to reach the end of function
+
+Destructuring requires type in brackets!
+
+---
+
+Arrays:
+
+string[][] innerTable
+
+Why do we care?
+- TS can do type inferencec when extracting values from an Arrays
+- TS can prevent us from adding incompatible values to the Arrays
+- We can get help with 'map', 'forEach', 'reduce' functions
+- Flexible - arrays can still contain multiple different types
+
+When typed arrays? -> represent a collection of records in a specific order
+
+Tuples??
+
+Representing objects as array - need to remember order of elements
+
+---
+
+Interfaces - Creates new type, describing the prop names and values types of an object
+
+Interfaces + Classes = How we get really strong code reuse in TS
+
+You can add extra values above interface requirement and this is ok in Interface - this object is enough to satisfy the interface
+
+General Strategy for Reusable Code in TS ->
+- Create functions that accept arguments that are typed with Interfaces
+- Objects/ classes can decide to 'implement' a given interface to work with a function
+
+---
+
+Classes - Blueprint to create on object with some fields and methods to represent a 'thing'
+
+Access modificators - "public" by default -> public, private, protected (this one and children)
+Cannot change method modifier by overloading
+
+Private does not private any extra security layer
+Private is for delightful code
+
+Default instance fields without keyword!
+
+Shorter constructor using access modifier next to passing constructor argument
+
+----
+
+JS libraries in TS?
+
+We can use Type definition file -> adapter layer
+

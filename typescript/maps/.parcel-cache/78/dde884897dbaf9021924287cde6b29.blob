@@ -1,4 +1,0 @@
-doSth('halo');
-function doSth(text) {
-  console.log(text);
-}
