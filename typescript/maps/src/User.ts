@@ -1,6 +1,7 @@
 import faker from 'faker'
+import { Mappable } from './CustomMap'
 
-class User {
+export class User implements Mappable {
 
     // It is only type-pattern not init!
 
@@ -16,5 +17,13 @@ class User {
             lat: parseFloat(faker.address.latitude()),
             lng: parseFloat(faker.address.longitude())
         }
+    }
+
+    getName() {
+        return this.name
+    }
+
+    markerContent(): string {
+        return `User Name: ${this.name}`
     }
 }
