@@ -1,0 +1,4 @@
+Deleting or restarting pod running MongoDB, will lose all data in it!
+Need to fix that in future
+
+Ts does not check mongoose types by default

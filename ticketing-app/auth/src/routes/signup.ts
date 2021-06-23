@@ -1,6 +1,7 @@
 import express, { Request, Response } from 'express'
 import { body, validationResult } from 'express-validator' // We need valdiate request body
-import { RequestValidationError, DatabaseConnectionError} from '../errors'
+import { User } from '../models/user'
+import { RequestValidationError, DatabaseConnectionError, BadRequestError } from '../errors'
 // validationResult is used to pull out validation information
 // It appends some fields to req object
 
@@ -20,7 +21,7 @@ router.post('/api/users/signup', [
     async (req: Request, res: Response) => {
         const errors = validationResult(req) // Kinda Object
 
-        if(!errors.isEmpty()){
+        if (!errors.isEmpty()) {
             // Collecting error reasons in JS way...
             // TS does not allow to attach non-existing prop to existing object!
             // In TS we need to build subclass.
@@ -31,16 +32,25 @@ router.post('/api/users/signup', [
             throw error
             
             */
-            
+
             throw new RequestValidationError(errors.array())
         }
 
         const { email, password } = req.body
 
-        console.log('Creating a user...')
+        const existingUser = await User.findOne({ email })
 
-        throw new DatabaseConnectionError()
-        res.send({})
+        if (existingUser) {
+            throw new BadRequestError('Email in use')
+        }
+
+        const user = User.build({ email, password })
+        await user.save()
+
+        res.status(201).send(user)
+
+        //throw new DatabaseConnectionError()
+        //res.send({})
     })
 
 export { router as signupRouter }
