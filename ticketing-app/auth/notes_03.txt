@@ -2,3 +2,58 @@ Deleting or restarting pod running MongoDB, will lose all data in it!
 Need to fix that in future
 
 Ts does not check mongoose types by default
+
+Auth in microservices is an unsolved problem
+
+Fundamental option #1 - Individual services rely on th auth service - communicate with auth service module
+Drawbacks: fully dependency to auth service :<
+
+Fundamental option #1.1 - Individual services rely on th auth service as a gateway - communicate with auth service module
+Drawbacks: fully dependency to auth service :<
+
+Fundamental option #2 - Individual services know how to auth a user
+Drawbacks: no auth service, need to duplicate or use in the shared library
+if no auth service, no way to verify if user is banned
+Solution is to make token valid only for some short time and create some token refresh logic 
+OR create UserBannedEvent on EventBus sent to the other services and save id to some sort-lived memory cache
+ 
+JWT vs Cookies
+
+Cookie 
+Request -> Reponse with Set-Cookie header -> another Request with Cookie header
+
+- Transport mechanism
+- Moves any kind of data between browser and Server
+- Automatically managed by the browser
+
+
+JWT
+Included in Headers Authorization, Body or also in Cookie
+
+- Authentication/Authorization mechanism
+- Stores any date we want
+- We have to manage it manually
+
+Requirements of our auth mechanism
+
+- Must be able to tell us details about a user
+- Must be able to handle auth info
+- Must have a built-in, tamper-resisitant way to expire or invalidate itself
+- Must be easily understood between different languages
+- Must not require some kind of backing data store on the server
+
+
+
+--> JWT can expiry by itself - cookie is managed by browser, user can omit it manually
+
+-- Server side rendering issues with JWT
+
+-- Normal client app require auth as soon first json data appear
+-- NextJS returns fully rendered HTML file with content (server-side-rendering)
+
+-- We connect with some kind of client server, witch connect with backend
+! Need to auth since first request
+There is no ability to use JS script before HTML comes, so only Cookie way of sending JWT is appropriate approach
+Cookies are automatically attached by browser
+
+There is technically a way to get around this using service workers, but it is a bit out of scope the lecture
