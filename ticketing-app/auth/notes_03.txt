@@ -57,3 +57,47 @@ There is no ability to use JS script before HTML comes, so only Cookie way of se
 Cookies are automatically attached by browser
 
 There is technically a way to get around this using service workers, but it is a bit out of scope the lecture
+
+JWT
+- header
+- sign phrase
+- payload
+
+Sharing signing key between services?? Challenge!
+
+Cluster object as Secret
+
+- kubectl create secret generic jwt-secret --from-literal=JWT_KEY=asdf
+
+- jwt-secret - name for ex. for the logging pruposes
+- JWT_KEY=asdf - key-value pairs
+
+* Debugging: kubectl describe pod <name_of_pod>
+
+Imperative apporach
+
+Env variables in K8s pods
+
+--
+
+Typescript Exclamation!
+
+Add "!" after reference to variable to make TS sure, that variable type was checked before its usage
+
+--
+
+_id vs id
+
+Different DBs may have different approach
+
+--
+
+toJSON() as JSON.stringify overload!
+
+--
+
+Augmenting Type Definitions
+
+declare global {
+    <accessing existing namespace here>
+}

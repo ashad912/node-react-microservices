@@ -1,13 +1,15 @@
 Start minikube:
 minikube start
 
+* Reattach cluster by: minikube delete -> minikube start
+
 Install docker-cli (optional):
 choco install docker-cli -y
 
 Run docker: 
 minikube -p minikube docker-env | Invoke-Expression
 
-Run scaffold:
-scaffold dev
+Run skaffold:
+skaffold dev
 
 App is visible under: ticketing.dev -> look at ingress-srv.yaml k8s manifest

@@ -97,3 +97,15 @@ JS libraries in TS?
 
 We can use Type definition file -> adapter layer
 
+Usually do not use "export default" in TS
+
+We need to care about Type Definition files
+
+CTRL+SHIFT+P -> Fold level "x"
+
+"?" after the name of variable - optional argument
+
+Type used in Interface
+
+We cannot use "implements" keyword with "factory" approach :/
+But is is not strictly neccessary.

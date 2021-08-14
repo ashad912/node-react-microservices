@@ -33,10 +33,10 @@ export class RequestValidationError extends CustomError {
     // error: ValidationError[]
     // this.errors = errors
 
-    constructor(private errors: ValidationError[]){
+    constructor(private errors: ValidationError[]) {
         super('Invalid request parameters') // Passed for logging purposes
-    
-        // Only because we are extending a built in class
+
+        // Only because we are extending a built-in class
         Object.setPrototypeOf(this, RequestValidationError.prototype)
     }
 
