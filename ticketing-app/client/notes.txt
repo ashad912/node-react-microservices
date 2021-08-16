@@ -1,0 +1,84 @@
+--
+
+NextJS in Microservices!
+
+Server side rendering pros:
+- content are delivered quicker
+- especially on mobile
+- search engine optimalization
+
+"pages" folder is a magic folder in Next
+- index.js inside is taken as root
+- <name>.js is taken as /<name> page in URL
+
+
+--
+
+skaffold.yaml http paths try to match item one by one in the order described in the file
+
+Problem with reflecting updates working in Docker container
+
+kubectl delete pod <name>
+-> deployment file will automatically create pod again
+
+--
+_app.js is not taken as page in Next but is always imported with any other page
+Any folder in pages folder is understood as next slash with name in URL
+
+pages/auth/signup.js -> localhost:3000/auth/signup
+
+--
+
+Auth in serverside rendering
+
+Next has getInitialProps method
+
+getInitialProps is performed on server not in the browser, so may be a problem with fetching data here!
+
+Call from server should contain domain address! A browser just add it automatically, server does not
+Two solutions:
+ - call to ingress from client pod
+ - call to auth service directly from client pod
+
+Ingress is configured and independent from "knowing" of other services
+This is the best solution
+
+Other problem is cookie, which is not automatically attached in request from server (not browser)
+
+Namespaces in K8s
+
+- default namespace -> auth-srv, client-srv
+- ingress-nginx namespace -> ingress-srv
+
+- kubectl get namespace
+
+How to reach different namespace?
+
+- kubectl get services -n ingress-nginx 
+^- services in ingress-nginx service
+
+http://[SERVICENAME].[NAMESPACE].svc.cluster.local/*
+http://ingress-nginx.ingress-nginx.svc.cluster.local/*
+
+Can use external name service - but it can be unremembered
+
+But there is no info about "ticketing.dev" here! Can be more domain configured in ingress-srv.yaml!
+Need to add Host header in request option as below:
+
+headers: {
+    Host: 'ticketing.dev'
+}
+
+Still not included cookies - this is request from NextJS server!
+
+Need to attach cookie manually
+The easiest is to copy all the headers!
+
+headers: req.headers <- req is one of object argument of getInitialProps function!!
+
+
+getInitialProps MAY BE also invoked in the browser!
+...when navigating from one page to another while in the app!
+
+Cool is to use axios.create with baseUrl option as a helper function
+
