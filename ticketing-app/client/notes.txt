@@ -82,3 +82,22 @@ getInitialProps MAY BE also invoked in the browser!
 
 Cool is to use axios.create with baseUrl option as a helper function
 
+---
+Creating custom component in _app.js
+It will be header. It is in all other components
+
+getInitialProps in two components (one nested) is more problematic in NextJS than you can think
+
+getInitialProps in custom component works in other way
+
+Page component => content === {req, res}
+Custom App component =? content === { Component, ctx: {req, res}}
+
+Using getInitialProps in custom component, stops invoking this function in pages components!
+NextJS is weird sometimes
+
+We have to invoke it manually from AppComponent
+
+---
+
+Sign out must be coming from browser! We need to clear cookies!!
