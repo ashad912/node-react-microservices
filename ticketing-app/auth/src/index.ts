@@ -15,7 +15,7 @@ async function start() {
             useCreateIndex: true
         })
     } catch (err) {
-        console.error(err)
+        console.error('Connection error', err)
     }
 
     app.listen(3000, () => {

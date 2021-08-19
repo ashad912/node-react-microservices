@@ -48,7 +48,7 @@
 // K8s deployments:
 // k get deployments
 // k describe deployment [depl name]
-// k apply -f <config-filename.
+// k apply -f <config-filename>
 // k delete deployment [depl name] <- deleting also associated pods
 
 // Can delete deployment pod, but it will recrete (with other id)

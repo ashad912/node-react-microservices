@@ -2,9 +2,8 @@ import express, { Request, Response } from 'express'
 import { body } from 'express-validator' // We need valdiate request body
 import jwt from 'jsonwebtoken'
 
-import { validateRequest } from '../middlewares/validate-requests'
+import { validateRequest, BadRequestError } from '@ashad912packages/common'
 import { User } from '../models/user'
-import { BadRequestError } from '../errors'
 // validationResult is used to pull out validation information
 // It appends some fields to req object
 

@@ -1,0 +1,40 @@
+Sharing code options
+
+Option 1 - Direct Copy Paste - poor solution
+Option 2 - Git submodule (sic!) - cool but bit challenging
+Option 3 - NPM Package (sic!!) - pain in maintenece but the best
+
+---
+
+NPM Organizations
+
+Security -> NPM public registry or NPM private registry 
+
+There might be differences ni our TS settings between the common library
+and our services - don't want to deal with that
+
+Services might not be written with TS at all
+
+Our common library will be written as TS and published as JS
+
+-- 
+
+tsconfig.json
+
+Uncommenting "declaration", "outDir"
+
+Want to make sure that importing js file from our library
+
+Updating version of library:
+
+- npm version patch
+
+Little script to this tut usage! (pub)
+
+To update npm!!
+
+- npm update [library]
+
+To verify inside the pod:
+- kubectl get pods
+- kubectl exec -it <pod_name> sh <- deprecated now!
