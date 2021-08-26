@@ -38,3 +38,20 @@ To update npm!!
 To verify inside the pod:
 - kubectl get pods
 - kubectl exec -it <pod_name> sh <- deprecated now!
+
+--
+
+Hacking - I don't know what is going on in "common" module
+-> Make console.log inside node_modules :O
+
+--
+
+Mongoose
+
+doc.set({
+
+})
+
+- can update a document
+
+await doc.save() - guarantee reference to updated "doc"
