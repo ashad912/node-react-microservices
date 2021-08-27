@@ -1,7 +1,14 @@
 Start minikube:
 minikube start
 
+* Add more memory and CPU: 
+    minikube config set memory 4096
+    minikube config set cpus 4
+
 * Reattach cluster by: minikube delete -> minikube start
+
+* If has been deleted (minikube must be started):
+    minikube addons enable ingress
 
 Install docker-cli (optional):
 choco install docker-cli -y
@@ -9,6 +16,9 @@ choco install docker-cli -y
 Run docker: 
 minikube -p minikube docker-env | Invoke-Expression
 
+* If has been deleted:
+    kubectl create secret generic jwt-secret --from-literal=JWT_KEY=asdf
+    
 Run skaffold:
 skaffold dev
 

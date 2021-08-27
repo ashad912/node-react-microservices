@@ -1,0 +1,126 @@
+How to connect with k8s?
+
+Option 1 - use Ingress-Nginx <-> NATS ClusterIP Service <-> NATS Pod (works, but can be easier for a test project)
+Option 2 - use NodePort Service <-> NATS Pod (works, still the same as above) 
+Option 3 - forward port to 4222 <-> NATS Pod
+
+We will use Option 3
+
+kubectl get pods
+kubectl port-forward nats-depl-[id] 4222:4222
+
+NOTE! Probably has to use 192.168.99.100 not localhost! (NOT TRUE LOL)
+
+--- 
+
+NATS Streaming
+
+- List of channels
+
+Publisher - data & name of channel (subject)
+Listener - subject to listen to
+
+---
+
+getSubject()
+getSequence() -> number of events (starts from 1)
+getData()
+
+---
+
+clientID already registered?
+
+has to be unique - we have it hardcoded
+
+
+---
+
+multiple instance - danger of duplicated new content in db?
+have to use queue group to prevent it
+
+2nd param to "subscribe" method
+
+---
+
+setting options on subscription requires chaining method on subscriptionOptions() ex. subscriptionOptions().setDeliverAllAvailable().setManualAckMode()
+
+default behaviour - event is lost if sth fails, acknowledgement is sended as soon as event comes
+can change it!
+
+setManualAckMode(true) makes us to acknowledge the event manully (there is a timeout - 30s, sending to other instance or the same again)
+
+manual acknowledgement - msg.ack()
+
+--- 
+
+client health checks
+
+We can look in NATS monitoring 
+
+kubectl get pods
+kubectl port-forward nats-depl-[id] 8222:8222
+
+http://localhost:8222/streaming
+
+http://localhost:8222/streaming/channelsz?subs=1 <- list of subscription 
+
+if client goes offline NATS waits for him for some time
+due to that, we lose some messages
+
+1. First method - by params:
+
+-hbi -> healthcheck
+-hbt -> in within time client can resposne
+-hbf -> how many times client response can fail, before closing
+
+2. Graceful Client Shutdown
+
+Controling by process.exit() and process.on() with SIGINT and SIGTERM params
+Can attach stan.on('close') handler and use stan.close() method
+
+It is not work in 100%, SIGINT and SIGTERM may sometimes not work on Win
+Moreover killing terminal by Task Manager also will not dispatch SIGINT, SIGTERM event
+
+--- 
+concurrency issues
+
+many things can go wrong here 
+
+- one listener instance can be faster
+- event failed
+- NATS thinks a listener is alive whet is dead
+- may receive the same event twice - op going to be successful is interrupted (non-transaction problem)
+
+These issues also appear in horizontal scaling apps
+
+Solutions?
+- one instance - nope! bottleneck or also may does not work
+- figure out possible error - nope! infinite number of error, costs, is that really important?
+- share state between instances - could be, but it is sequential (limits other events) 
+- track events by resource ID - better than previous, less sequential but implementation complexity grows very very fast (in NATS: lot of channels and queue groups)
+- track events by resource ID saved in DB with the last processed id - betteeer, we have current and last processed id from the specific resource,
+we can fight with concurrency, but there is assumption here, that we can get number of event to publisher back, which is not true 
+
+Solutions!
+
+An important thing is good design of our system! 
+
+It is imporant to close our operation in transaction which is involved in scope of the specific service
+Then we can design transaction and our db logic to watch over specific order of consuming transactions
+Example is adding resourceId and number of transaction to our resource event to compare it in db, and handle properly
+Versioning!
+
+---
+event history
+
+setDeliverAllAvailable() <- sending all (subject) events from history
+
+Need to mix it with setDurableName()
+It build durable subscriptions - thanks to that NATS remember which events a specific listener processed
+Important is to keep the same id for a specific listener
+.setDeliverAllAvailable() must stay in a code to make sure that our listener gets all events from the past ->
+-> I mean all events emitted before this listener start to exist!
+
+Must remember that after resetting terminal NATS by default clean history of closed listener
+We can change this behaviour by setting group once again
+Then NATS keeps history of this group, even if it is empty (no listeners connected)

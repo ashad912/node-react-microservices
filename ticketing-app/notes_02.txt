@@ -1,0 +1,27 @@
+NATS Streaming Server
+
+docs.nats.importing
+
+NATS and NATS Streaming Server are different things - NATS SS is more advanced, built on the top NATS
+
+NATS Streaming implements some extraordinary import design decisions that will affect out app
+
+We going to run the official 'nats-streaming' docker image in k8s. Need to read the image's docs
+
+---
+
+Using args in build image command from 'depl' file [[name_of_arg], [value]]
+
+---
+
+We will use node-nats-streaming as event bus provider
+
+Sub-pub pattern here in communication
+
+List of All Events Ever Emitted case?
+->
+in NATS it is stored in memory on in SQL (mySQL/Postgres)
+
+---
+
+Going to setup workaround project related to node-nats-streaming
