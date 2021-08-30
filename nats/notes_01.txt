@@ -124,3 +124,36 @@ Important is to keep the same id for a specific listener
 Must remember that after resetting terminal NATS by default clean history of closed listener
 We can change this behaviour by setting group once again
 Then NATS keeps history of this group, even if it is empty (no listeners connected)
+
+--
+
+Using Enum!
+
+Check if used one of predefined values
+
+---
+
+subject: Subjects.TicketCreated = Subjects.TicketCreated;
+
+type anno to make sure that our subject won't change in future
+<- THE SAME AS "final" in JAVA
+
+---
+
+TS is making sure that we provide data from our generic type (T)
+
+---
+
+publish() is async - remember to handle
+
+---
+
+common module in scope of events names and general consistency is super helpful
+as far as we use the same technology (ex. Typescript)
+
+Alternatives with Cross Languange Support
+
+- JSON Schema
+- Protobuf
+- Apache Avro
+

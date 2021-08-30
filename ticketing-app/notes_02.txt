@@ -25,3 +25,17 @@ in NATS it is stored in memory on in SQL (mySQL/Postgres)
 ---
 
 Going to setup workaround project related to node-nats-streaming
+
+---
+
+Project created
+
+---
+
+Remember - due to hooks or middleware, value in request may be changed during saving to db ->
+-> focus on usage the last of value reference
+
+--- 
+
+How to share NATS client between files? (DI hehe!)
+Create custom file
