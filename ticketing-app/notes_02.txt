@@ -39,3 +39,43 @@ Remember - due to hooks or middleware, value in request may be changed during sa
 
 How to share NATS client between files? (DI hehe!)
 Create custom file
+
+---
+
+clusterId -> -cid in .yml service params
+
+singleton -> means export one instance of class/factory as dep to other modules
+
+---
+
+Deleting nats pod to see process.on() on close actions
+
+---
+
+awaiting awaiting... how long? user is waiting for response!!
+
+does user care about event emitting? it depends on business logic
+
+saving events in db for faster response, and transaction/event consistency
+
+To make sure that our event and transaction are both saved in db we can use builtin Transaction (provides rollback etc.)
+-> Mongoose can do it 
+
+Not going to implement it in scope of the course :<
+
+---
+
+Handle NATS inside test
+
+- test environment
+- mocking
+
+<- using jest.fn().mockImplementation()
+---
+
+Using NATS env by K8s
+
+falueFrom -> fieldRef -> fieldPath -> metadata.name
+looks at name of pod, guaranteea unique id
+
+

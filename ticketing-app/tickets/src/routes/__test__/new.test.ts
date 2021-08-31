@@ -4,6 +4,8 @@ import { Ticket } from '../../models/ticket';
 
 import { mockCookie } from '../../test/setup'
 
+import { natsWrapper } from '../../nats-wrapper'
+
 it('has a route handler listening to /api/tickets for post requests', async () => {
   const response = await request(app).post('/api/tickets').send({});
 
@@ -81,3 +83,20 @@ it('creates a ticket with valid inputs', async () => {
   expect(tickets[0].price).toEqual(20);
   expect(tickets[0].title).toEqual(title);
 });
+
+
+it('publishes an event', async () => {
+
+  const title = 'asldkfj';
+
+  await request(app)
+    .post('/api/tickets')
+    .set('Cookie', mockCookie())
+    .send({
+      title,
+      price: 20,
+    })
+    .expect(201);
+
+  expect(natsWrapper.client.publish).toHaveBeenCalled()
+})
