@@ -1,0 +1,58 @@
+Orders service
+
+- userId
+- status
+- expiresAt
+- ticketId
+
+
+Creating an order to purchase the specific ticket
+
+--
+
+Adding version flag in ticket to track how many times the ticket was updated
+
+---
+
+Validation including Mongo ID recognition? Too specific?
+depends
+
+can do it as below:
+
+custom((input: string) => {
+    mongoose.Types.ObjectId.isValid(input)
+})
+
+--- 
+
+lookup and population!
+
+Option 1 - Embedding -> challenging to query, mixing responsibility
+Option 2 - Population
+
+Hadling population types with TS?
+
+
+---
+
+setting enum on mongoose schema property to limit possible values
+
+---
+
+Can query using mongoose by whole object as query param 
+-> ticket: ticket. Usually done it by targeting id (??)
+
+---
+
+!!existingOrder -> Boolean(existingOrder)
+
+---
+
+There is not possibility to test handler manually, because orders service cannot create tickets!
+We can test it in cluster, or create some records manually in a db :/
+
+---
+
+As Stephen said DELETE keyword is not the best choice here, because we only
+change status here (PATCH fits the best)
+DELETE returns 204 status - No Content

@@ -78,4 +78,13 @@ Using NATS env by K8s
 falueFrom -> fieldRef -> fieldPath -> metadata.name
 looks at name of pod, guaranteea unique id
 
+---
+
+To refresh VSC:
+Crtl+Shift+P -> Developer: Reload Window 
+
+---
+
+To prevent type checking:
+// @ts-nocheck
 
