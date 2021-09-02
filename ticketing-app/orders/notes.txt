@@ -53,6 +53,31 @@ We can test it in cluster, or create some records manually in a db :/
 
 ---
 
+it.todo <- marking test "to-do"
+
+---
+
 As Stephen said DELETE keyword is not the best choice here, because we only
 change status here (PATCH fits the best)
 DELETE returns 204 status - No Content
+
+---
+
+Order Service flow
+
+orders:created
+- Tickets service needs to be told that one of its tickets has been reserved - need to lock it
+- Payments service need to know there is a new order that a user mignt submit for Payments
+- Expiration service needs to start a 15 minute timer to eventually time out this order
+
+Tickets Service has tickets
+Orders Service has orders and tickets
+Payments has charges and orders
+
+orders:cancelled
+- Unreserving the ticket
+- Reject payments
+
+
+--- 
+Can pass min or max of values in event - depends on strategy

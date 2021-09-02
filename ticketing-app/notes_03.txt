@@ -1,0 +1,4 @@
+Time for event listener between services!
+HOT! Concurrency issues!!!
+
+Listeners are similiar - creating blueprint
