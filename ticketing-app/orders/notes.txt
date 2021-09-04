@@ -81,3 +81,61 @@ orders:cancelled
 
 --- 
 Can pass min or max of values in event - depends on strategy
+
+---
+
+Implementation of event listener
+How to prevent concurrency issues?
+
+- Remember about db ID consistency
+- Versioning!!!
+
+
+---
+
+Skaffold may console logs not in chronological order 
+
+---
+
+How Mongo updates records?
+
+- Normal -> find the record with id and set value
+- Optimistic Concurrency Control -> find the record and version of X (__v by default) and set value
+(just additional condition - perfect! - but applicable for updating)
+
+(Of course updating is more issuable than creating)
+
+Changing deafult __v key for tracking in mongoose:
+-> schema.set('versionKey', 'yournewkey')
+
+When should we increment or include the "version" number of a record with an event?
+
+Increment the "version" number whenever the primary service responsible
+for a record emits an event to describe a create/update/destroy to a record
+
+--- 
+Using versioning mongoose plugin in different services it's a bit cheating, because there is no abstraction here
+
+What if there is different schema from different db?
+
+Replacing mongoose-update-if-current by own implementation!!
+
+Two steps:
+- Updates the version number on recors before they are saved
+- Customizes the find-and-update operation (save) to look for the correct version
+
+
+--- 
+
+Accessing DB in K8s cluster (orders example)
+
+-> kubectl exec -it orders-mongo-depl-[some_id] mongo
+-> show dbs
+-> user orders
+-> db.tickets
+-> db.tickets.find({ price: 2000 })
+...
+
+Coool!
+
+---
