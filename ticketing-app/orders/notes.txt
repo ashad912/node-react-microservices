@@ -139,3 +139,22 @@ Accessing DB in K8s cluster (orders example)
 Coool!
 
 ---
+
+Strategies for locking a ticket
+
+-> providing orderId related to ticket
+-> its presence saying if it is locked or not
+
+
+---
+
+Updating one's service ticket copy requires emitting event about update to sync other services!
+
+Emitting orders:created or cancelled changes version of ticket
+Everything is fine until, that would be necesssary to emit ticket:update
+In this situtaion the orders copy of the ticket has old version and just refuses to process this update
+
+---
+
+If used optional field in TS and the field was set:
+-> to "unset" set as undefined not null to avoid additional "type-work"
