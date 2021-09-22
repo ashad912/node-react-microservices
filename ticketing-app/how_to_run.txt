@@ -18,7 +18,10 @@ minikube -p minikube docker-env | Invoke-Expression
 
 * If has been deleted:
     kubectl create secret generic jwt-secret --from-literal=JWT_KEY=asdf
+    kubectl create secret generic stripe-secret --from-literal=STRIPE_KEY=sk_test_51JcXpcH1BGxjLA0K4KoH91SP7bFEakn3QNGLf5R49pQBTYE8ohuSSaAc9bSkHznOEW5JXEG78U99dIIogUxcKvBE008ZyFyV4B
     
+    (This is a secret key - I know, just for testing)
+
 Run skaffold:
 skaffold dev
 

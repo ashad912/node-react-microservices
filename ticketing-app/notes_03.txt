@@ -2,3 +2,60 @@ Time for event listener between services!
 HOT! Concurrency issues!!!
 
 Listeners are similiar - creating blueprint
+
+-- 
+How to create expiration services?
+
+Ideas:
+
+-> setTimeout 15 min
+<- hold in memory
+
+-> don't ack order:created event until time has come (15 min), and then emit expiration:completed
+<- lot of trials of event delivery - it spoils logging analytics etc.
+
+-> say message broker/event bus wait 15 mins with expiration event!
+<- nats does not support it
+
+MORE: With scheduler options (waiting for some time/to the specific time) we even do not need an expiration services
+
+-> use Bull JS connected with Redis as list of jobs
+<- fits here
+
+
+---
+
+Installing bull, using Redis
+Using redis image from hub.docker.dom
+
+No needed to have expiration k8s service - no need to listen on port!
+
+--- 
+
+How to use Bull JS?
+
+People use Bull to handle video convert using additional workers
+
+Request (convert video to mkv)  -> Web Server (with Bull JS) -> Redis Server (list of jobs)
+-> Job  -> Worker Server (logic to covert a video file, includes Bull JS)
+        -> Worker Server 
+        -> Worker Server
+
+Bull JS is going to create queue (expirationQueue)
+
+expirationQueue <--> Redis list of jobs 
+
+---
+
+Code to enqueue a job <-> List of jobs with type "order:expiration" <-> Code to process a job
+
+In job we want to store:
+
+- orderId
+
+Only that
+
+---
+
+Do we want to remove ticket ref when cancelling the order?
+-> No, status is enough - we don't want to remove the information!

@@ -1,0 +1,37 @@
+Payment service
+-> order:created listener
+-> order:cancelled listener
+-> payment:created publisher
+
+Version is really important when we have possibility to update a record!
+
+Stripe JS library as payment dialog (frontend)
+Stripe JS library as payment service API
+
+Request create a "charge" ->
+
+{
+    token: 'dsadas',
+    orderId: 'ABC'
+
+}
+
+Find order the user is trying to pay for
+Make sure the order belongs to this user
+Make sure the payment amount matches the amount due for the order
+Verify payment with Stripe API
+Create "charge" record to record successful payment
+
+Using Node Stripe SDK
+stripe.com
+
+We're going to use always working token "tok_visa"
+We're working in a test mode, we don't want to be involved in a real money, credit cards etc. :O
+
+Testing by mock approach and realistic approach (less abstract)
+
+Lot of options -> retrieve a charge, list all charges
+
+Jest .toBeDefined() work specifically with "undefined" status
+If null .toBeDefined() passes
+Need to use not.toBeNull()

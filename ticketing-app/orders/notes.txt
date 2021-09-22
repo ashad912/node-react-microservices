@@ -121,7 +121,7 @@ What if there is different schema from different db?
 Replacing mongoose-update-if-current by own implementation!!
 
 Two steps:
-- Updates the version number on recors before they are saved
+- Updates the version number on records before they are saved
 - Customizes the find-and-update operation (save) to look for the correct version
 
 

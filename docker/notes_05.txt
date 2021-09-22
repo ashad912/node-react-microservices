@@ -35,7 +35,7 @@ services:
 // DOCKER TOOLBOX HELP
 
 // Run docker in Win Powershell as Admin
-// Restart docker-machine -> dokcer-machine restart
+// Restart docker-machine -> docker-machine restart
 // Run: docker env
 // Run: & "C:\Program Files\Docker Toolbox\docker-machine.exe" env | Invoke-Expression
 
