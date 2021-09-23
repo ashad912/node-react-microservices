@@ -35,3 +35,10 @@ Lot of options -> retrieve a charge, list all charges
 Jest .toBeDefined() work specifically with "undefined" status
 If null .toBeDefined() passes
 Need to use not.toBeNull()
+
+---
+
+Client update
+
+/tickets/:ticketId route -> /tickets/[ticketId].js as file in NextJS
+Using square brackets in filenames!

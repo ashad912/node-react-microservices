@@ -1,0 +1,12 @@
+CI/CD 
+
+How to manage a project?
+
+CI - classic one
+CD - deploy code from GitHub to K8s cluster
+
+Using MonoRepo
+
+To add common:
+
+-> git rm --cached ticketing-app\common 
