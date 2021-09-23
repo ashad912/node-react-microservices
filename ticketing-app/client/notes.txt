@@ -93,7 +93,7 @@ getInitialProps in custom component works in other way
 Page component => content === {req, res}
 Custom App component =? content === { Component, ctx: {req, res}}
 
-Using getInitialProps in custom component, stops invoking this function in pages components!
+Using getInitialProps in custom component, stops invoking this functon in pages components!
 NextJS is weird sometimes
 
 We have to invoke it manually from AppComponent
