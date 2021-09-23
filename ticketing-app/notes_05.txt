@@ -18,3 +18,7 @@ build -> uses: actions/checkout@v2
 
 npm run test:ci <- it is required to close the session after tests are done!
 test:ci = jest <- jest by default does it
+
+running test for different services in parallel!
+
+but let's think about selection - tests related to a specific service!

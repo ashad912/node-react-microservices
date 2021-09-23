@@ -5,4 +5,3 @@ RUN npm install --only=prod -> avoiding installing dev deps
 jest --watchAll --no-cache
 
 --no-cache works really well with TS <-> jest issues with files recognition
-
