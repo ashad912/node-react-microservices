@@ -7,6 +7,14 @@ CD - deploy code from GitHub to K8s cluster
 
 Using MonoRepo
 
-To add common:
+To add past submodule "common" folder:
 
 -> git rm --cached ticketing-app\common 
+
+GitHub Actions
+
+build -> uses: actions/checkout@v2 
+<- uses all code of the project
+
+npm run test:ci <- it is required to close the session after tests are done!
+test:ci = jest <- jest by default does it
