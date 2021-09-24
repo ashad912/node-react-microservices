@@ -87,3 +87,5 @@ Adding secrets to DO cluster
 WE HAD TO REMEBER TO INSTALL ingress-nginx ADD-ON ON OUR GITHUB kubectl !!!
 -> Go to official "ingress-nginx" webpage and get link for appropriate (DO) deployment
 -> kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.0.1/deploy/static/provider/do/deploy.yaml
+
+gco master = git checkout master :OOO

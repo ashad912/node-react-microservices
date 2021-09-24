@@ -90,7 +90,6 @@ How to prevent concurrency issues?
 - Remember about db ID consistency
 - Versioning!!!
 
-
 ---
 
 Skaffold may console logs not in chronological order 
