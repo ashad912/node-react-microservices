@@ -127,3 +127,12 @@ Adding domain
 Configuring A tab with "@" as hostname and choose appropriate Load Balancer
 Configuring CNAME tab with "www" as hostname and "@" as "is an alias of"
 In both cases setting TTL (Time to live) on 30 seconds
+
+---
+
+Next steps:
+
+- Add in HTTPS - cert-manager.io
+- Add in Email Support - Mailchimp/Sendgrid
+- Add in "build" steps for our prod cluster - services are runned in the "dev" mode. Can adjust Dockerfile to be prod
+- Create a staging cluster - new branch, new workflow, new domain for testing (staging) purposes
