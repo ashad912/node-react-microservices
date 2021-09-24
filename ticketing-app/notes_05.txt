@@ -89,3 +89,41 @@ WE HAD TO REMEBER TO INSTALL ingress-nginx ADD-ON ON OUR GITHUB kubectl !!!
 -> kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.0.1/deploy/static/provider/do/deploy.yaml
 
 gco master = git checkout master :OOO
+
+---
+
+Remember when debugging:
+
+-> kubectl describe pod [pod_name]
+-> kubectl logs [pod_name]
+
+---
+
+DO automatically made Load Balancer when creating the K8s cluster
+
+We have three nodes
+
+Load Balancer has an external ip assigned by DO 
+If we browse it, we'll see nginx html error site
+
+---
+
+Buying domain
+
+namecheap.com
+ticketingbyashad.xyz
+
+Setting custom DNS to:
+
+ns1.digitalocean.com
+ns2.digitalocean.com
+ns3.digitalocean.com
+
+Read more about DNS!!!
+
+At DO:
+
+Adding domain
+Configuring A tab with "@" as hostname and choose appropriate Load Balancer
+Configuring CNAME tab with "www" as hostname and "@" as "is an alias of"
+In both cases setting TTL (Time to live) on 30 seconds
