@@ -22,3 +22,29 @@ test:ci = jest <- jest by default does it
 running test for different services in parallel!
 
 but let's think about selection - tests related to a specific service!
+
+--
+We are going to use Digital Option
+
+kubectl -> docker desktop context -> Local Cluster
+        -> digital ocean context -> Digital Ocean Cluster
+
+DO:
+- Create a cluster
+- Download doctl
+- Create token at DO
+- Auth by "doctl auth init" command
+
+Get connecion info for our new cluster:
+- doctl kubernetes cluster kubeconfig save [cluster_name]
+
+List all contexts:
+- kubectl config view
+
+-> My contexts: do-fra1-ticketing, minikube
+
+Use a different context:
+- kubectl config use-context [context_name]
+
+We are going to connect GitHub Actions workflow with DO K8s cluster
+Creting separate workflow deployment for each service
