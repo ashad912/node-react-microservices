@@ -41,6 +41,7 @@ Get connecion info for our new cluster:
 List all contexts:
 - kubectl config view
 
+-> Current context is seen at "current-context" field
 -> My contexts: do-fra1-ticketing, minikube
 
 Use a different context:
@@ -48,3 +49,41 @@ Use a different context:
 
 We are going to connect GitHub Actions workflow with DO K8s cluster
 Creting separate workflow deployment for each service
+
+---
+
+GitHub Container
+doctl -> context -> kubectl --->
+
+Digital Ocean
+---> Our Cluster
+
+1. Install doctl, use API key
+2. Fetching context
+3. Feed context into kubectl already preinstalled on GitHub 
+
+Reminder - restarting deployment:
+- kubectl rollout restart deployment [name_of_depl]
+
+---
+
+Our infra - ingress-srv uses "ticketing.dev"
+Since we are deploying the app to Internet we need adjust this 
+We can use dev/prod name here using manifest files
+
+k8s folder - either dev or prod
+k8s-dev folder - only dev
+k8s-prod folder - only prod
+
+---
+
+Adding secrets to DO cluster
+
+-> Make sure that use appropriate context (kubectl config use-context do-fra1-ticketing)
+-> Run "kubectl create secret ..." command for JWT_KEY and STRIPE_KEY from command line ofc
+
+---
+
+WE HAD TO REMEBER TO INSTALL ingress-nginx ADD-ON ON OUR GITHUB kubectl !!!
+-> Go to official "ingress-nginx" webpage and get link for appropriate (DO) deployment
+-> kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.0.1/deploy/static/provider/do/deploy.yaml
